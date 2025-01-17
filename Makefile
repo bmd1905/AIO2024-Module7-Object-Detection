@@ -3,8 +3,11 @@
 export:
 	python3 -m src.export
 
-tracking:
-	python3 -m src.tracking --video-path samples/vietnam-1.mp4
+tracking_simple:
+	python3 -m src.tracking.simple --video-path samples/highway.mp4
+
+tracking_optimized:
+	python3 -m src.tracking.optimized --video-path samples/highway.mp4
 
 lint:
 	pre-commit run --all-files
