@@ -1,8 +1,14 @@
+import sys
 import uuid
 from pathlib import Path
 
 import cv2
+from loguru import logger
 from ultralytics.engine.results import Boxes
+
+logger.remove()
+logger.add(sys.stderr, level="INFO")
+logger.add("run/log.log", level="INFO", rotation="100kb")
 
 # Create run directory if it doesn't exist
 Path("./run").mkdir(parents=True, exist_ok=True)
