@@ -11,3 +11,6 @@ tracking_optimized:
 
 lint:
 	pre-commit run --all-files
+
+yolo-world:
+	python3 -m src.yolo-world.custom_prompt
