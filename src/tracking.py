@@ -32,7 +32,14 @@ while cap.isOpened():
 
     if success:
         # Run YOLO11 tracking on the frame, persisting tracks between frames
-        results = model.track(frame, persist=True, show=False)
+        results = model.track(
+            frame,
+            persist=True,
+            show=False,
+            tracker="bytetrack.yaml",
+            conf=0.3,
+            iou=0.5,
+        )
 
         # Get the boxes and track IDs (with error handling)
         boxes = results[0].boxes.xywh.cpu()
