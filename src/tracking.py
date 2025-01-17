@@ -8,7 +8,7 @@ from ultralytics import YOLO
 model = YOLO("yolo11l.pt")
 
 # Open the video file
-video_path = "samples/vietname-1.mp4"
+video_path = "samples/vietnam-1.mp4"
 cap = cv2.VideoCapture(video_path)
 
 # Get video properties
@@ -46,7 +46,7 @@ while cap.isOpened():
             track_ids = []  # Handle case where tracking fails
 
         # Visualize the results on the frame
-        annotated_frame = results[0].plot()
+        annotated_frame = results[0].plot(font_size=4, line_width=2)
 
         # Plot the tracks only if we have valid tracking data
         if track_ids:
