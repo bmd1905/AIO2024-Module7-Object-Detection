@@ -1,7 +1,7 @@
 import cv2
 from ultralytics import solutions
 
-cap = cv2.VideoCapture("path/to/video/file.mp4")
+cap = cv2.VideoCapture("samples/highway.mp4")
 assert cap.isOpened(), "Error reading video file"
 w, h, fps = (
     int(cap.get(x))
@@ -11,27 +11,22 @@ w, h, fps = (
 # Define region points
 # region_points = [(20, 400), (1080, 400)]  # For line counting
 region_points = [
-    (20, 400),
-    (1080, 400),
-    (1080, 360),
-    (20, 360),
-]  # For rectangle region counting
-# region_points = [(20, 400), (1080, 400), (1080, 360), (20, 360), (20, 400)]  # For polygon region counting
+    (430, 700),
+    (1600, 700),
+    (1600, 1080),
+    (430, 1080),
+]  # For rectangle region counting: top left, top right, bottom right, bottom left
 
 # Video writer
 video_writer = cv2.VideoWriter(
-    "object_counting_output.avi", cv2.VideoWriter_fourcc(*"mp4v"), fps, (w, h)
+    "./run/highway_counted.mp4", cv2.VideoWriter_fourcc(*"mp4v"), fps, (w, h)
 )
 
 # Init ObjectCounter
 counter = solutions.ObjectCounter(
-    show=True,  # Display the output
+    show=False,  # Display the output
     region=region_points,  # Pass region points
-    model="yolo11n.pt",  # model="yolo11n-obb.pt" for object counting using YOLO11 OBB model.
-    # classes=[0, 2],  # If you want to count specific classes i.e person and car with COCO pretrained model.
-    # show_in=True,  # Display in counts
-    # show_out=True,  # Display out counts
-    # line_width=2,  # Adjust the line width for bounding boxes and text display
+    model="yolo11x.pt",  # model="yolo11n-obb.pt" for object counting using YOLO11 OBB model.
 )
 
 # Process video

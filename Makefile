@@ -14,3 +14,6 @@ lint:
 
 yolo-world:
 	python3 -m src.yolo-world.custom_prompt
+
+object_counting:
+	python3 -m src.object_counting
