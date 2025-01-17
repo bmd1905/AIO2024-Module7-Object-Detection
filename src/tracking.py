@@ -8,7 +8,7 @@ from ultralytics import YOLO
 model = YOLO("yolo11l.pt")
 
 # Open the video file
-video_path = "samples/vietnam-1.mp4"
+video_path = "samples/thai.mp4"
 cap = cv2.VideoCapture(video_path)
 
 # Get video properties
@@ -54,7 +54,7 @@ while cap.isOpened():
                 x, y, w, h = box
                 track = track_history[track_id]
                 track.append((float(x), float(y)))  # x, y center point
-                if len(track) > 120:  # retain 30 tracks for 30 frames
+                if len(track) > 120:
                     track.pop(0)
 
                 # Draw the tracking lines
