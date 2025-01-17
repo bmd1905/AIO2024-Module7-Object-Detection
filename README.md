@@ -1,6 +1,10 @@
 ## Installation
 
 ```bash
+# Install system dependencies (Ubuntu/Debian)
+sudo apt-get update
+sudo apt-get install -y libgl1-mesa-glx
+
 # Use conda
 conda create -n object-detection python=3.11 -y
 conda activate object-detection
