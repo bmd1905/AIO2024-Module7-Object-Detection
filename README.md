@@ -1,3 +1,7 @@
+
+
+![Theme](./assets/theme.png)
+
 ## Installation
 
 ```bash
