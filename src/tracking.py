@@ -14,7 +14,7 @@ def load_config():
     return {
         "model_path": "yolo11x.pt",
         "track_history_length": 120,
-        "batch_size": 128,
+        "batch_size": 64,
         "line_thickness": 4,
         "track_color": (230, 230, 230),
     }
