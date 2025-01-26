@@ -9,13 +9,10 @@ w, h, fps = (
 )
 
 # Define region points
-# region_points = [(20, 400), (1080, 400)]  # For line counting
-region_points = [
-    (430, 700),
-    (1600, 700),
-    (1600, 1080),
-    (430, 1080),
-]  # For rectangle region counting: top left, top right, bottom right, bottom left
+region_points = [(960, 850), (1920, 850)]
+
+# For rectangle region counting: top left, top right, bottom right, bottom left
+# region_points = [(20, 400), (1080, 400), (1080, 850), (20, 850)]
 
 # Video writer
 video_writer = cv2.VideoWriter(

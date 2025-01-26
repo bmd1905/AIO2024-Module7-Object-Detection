@@ -32,7 +32,7 @@ def initialize_video(video_path):
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
 
-    return cap, out, output_path
+    return cap, out, output_path, fps
 
 
 def update_track_history(
@@ -119,20 +119,22 @@ def main(video_path):
     CONFIG = load_config()
     model = YOLO(CONFIG.get("model_path", "yolo11x.pt"))
 
-    cap, out, output_path = initialize_video(video_path)
+    cap, out, output_path, fps = initialize_video(video_path)
     track_history = defaultdict(lambda: [])
     last_seen = defaultdict(int)
-    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+
+    # Calculate frames for 3 seconds
+    frames_to_process = int(fps * 3)
 
     with tqdm(
-        total=total_frames,
+        total=frames_to_process,
         desc="Processing frames",
         colour="green",
     ) as pbar:
         frame_count = 0
         batch_frames = []
 
-        while cap.isOpened():
+        while cap.isOpened() and frame_count < frames_to_process:
             success, frame = cap.read()
             if not success:
                 break
@@ -140,7 +142,10 @@ def main(video_path):
             frame_count += 1
             batch_frames.append(frame)
 
-            if len(batch_frames) == CONFIG["batch_size"] or frame_count == total_frames:
+            if (
+                len(batch_frames) == CONFIG["batch_size"]
+                or frame_count == frames_to_process
+            ):
                 try:
                     processed_frames = process_batch(
                         model,
