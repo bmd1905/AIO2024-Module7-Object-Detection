@@ -1,5 +1,5 @@
 numpy==2.2.2
-ultralytics==8.3.64
+ultralytics==8.3.74
 opencv-python==4.11.0.86
 pre-commit==4.0.1
 loguru==0.7.3
